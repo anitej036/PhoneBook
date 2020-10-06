@@ -14,12 +14,12 @@ def destroy(e=1):
     root0.destroy()
 root0.title("FRONT PAGE")
 root0.geometry('800x300')
-root0.configure(bg='orange')
-Label(root0,text = 'JAYPEE UNIVERSITY OF ENGINEERING & TECHNOLOGY',font = 'Arial 20 bold',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'PHONEBOOK PROJECT',font = 'Arial 20 bold underline',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'DEVELOPED BY',font = 'Arial',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'ANITEJ SINGH BHADAURIA',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = '181B036',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='orange').pack()
+root0.configure(bg='sky blue')
+Label(root0,text = 'JAYPEE UNIVERSITY OF ENGINEERING & TECHNOLOGY',font = 'Arial 20 bold',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'PHONEBOOK PROJECT',font = 'Arial 20 bold underline',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'DEVELOPED BY',font = 'Arial',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'ANITEJ SINGH BHADAURIA',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = '181B036',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='sky blue').pack()
 
 root0.bind('<Motion>',destroy)
 root0.mainloop()
@@ -302,6 +302,7 @@ def u():
     
 
 root=Tk()
+root.configure(bg='sky blue')
 imgg=PhotoImage(file='animated-telephone-image-0023.gif')
 Label(root,image=imgg).grid(row=0,column=1)
 Label(root,text="First Name").grid(row=1,column=1)
