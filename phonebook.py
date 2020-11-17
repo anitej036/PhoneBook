@@ -1,19 +1,25 @@
-from Tkinter import *
+try:
+    from Tkinter import *
+except:
+    from tkinter import *
 import sqlite3
-from tkMessageBox import *
-from string import split
+try:
+    from tkMessageBox import *
+except:
+    from tkinter import messagebox
+
 #root0 Window
 root0 = Tk()
-def destroy(True):
+def destroy(e=1):
     root0.destroy()
 root0.title("FRONT PAGE")
 root0.geometry('800x300')
-root0.configure(bg='orange')
-Label(root0,text = 'JAYPEE UNIVERSITY OF ENGINEERING & TECHNOLOGY',font = 'Arial 20 bold',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'PHONEBOOK PROJECT',font = 'Arial 20 bold underline',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'DEVELOPED BY',font = 'Arial',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = 'ANITEJ SINGH BHADAURIA',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='orange').pack()
-Label(root0,text = '181B036',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='orange').pack()
+root0.configure(bg='sky blue')
+Label(root0,text = 'JAYPEE UNIVERSITY OF ENGINEERING & TECHNOLOGY',font = 'Arial 20 bold',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'PHONEBOOK PROJECT',font = 'Arial 20 bold underline',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'DEVELOPED BY',font = 'Arial',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = 'ANITEJ SINGH BHADAURIA',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='sky blue').pack()
+Label(root0,text = '181B036',font = 'Arial 15 bold',fg = 'DarkOrange4',bg='sky blue').pack()
 
 root0.bind('<Motion>',destroy)
 root0.mainloop()
@@ -52,7 +58,7 @@ def Save():
     try:
         cur.execute('insert into phone_number(contact_id,contact_type,phone_number) values(?,?,?)',(x[0][0],ll[0],ll[2]))
     except:
-        showinfo('Error','The Entered Phone Number Is Already Saved...Enter Again ')
+        messagebox.showinfo('Error','The Entered Phone Number Is Already Saved...Enter Again ')
         return
     cur.execute('insert into email_id(contact_id,email_type,email_id) values(?,?,?)',(x[0][0],ll[1],ll[3]))
     con.commit()
@@ -68,7 +74,7 @@ def Save():
     e9.delete(0,END)
     e10.delete(0,END)
     e11.delete(0,END)
-    showinfo('SAVED','Contact Saved Successfully')
+    messagebox.showinfo('SAVED','Contact Saved Successfully')
     
     
 def Search():
@@ -77,11 +83,11 @@ def Search():
     root1.geometry('520x700')
     v1 = Entry(root1)
     v1.grid(row=1,column=1)
-    def detail(True):
+    def detail(e=1):
         def sho(name):
             root2 =Tk()
             y = ['','','']
-            x = split(name)
+            x = name.split()
             for  i in range(len(x)):
                 y[i] = x[i]
             cur.execute('select * from phone where first_name = ? or middle_name = ? or last_name = ?',tuple(y))
@@ -101,7 +107,7 @@ def Search():
                 con.commit()
                 cur.execute('delete from email_id where contact_id=?',(xx[0][0],))
                 con.commit()
-                showinfo('Saved','Contact Deleted Successfully')
+                messagebox.showinfo('Saved','Contact Deleted Successfully')
                 root2.destroy()
                 return
             def Edit():
@@ -119,13 +125,13 @@ def Search():
                     if e13.get()!='':
                         cur.execute('UPDATE email_id set email_type=?,email_id=? where contact_id=?',(e12.get(),e13.get(),xx[0][0]))
                         con.commit()
-                    showinfo('UPDATE','Contact Updated Successfully')
+                    messagebox.showinfo('UPDATE','Contact Updated Successfully')
                     root1.destroy()
                     root2.destroy()
                     root3.destroy()
                     
                 def closee():
-                    jk=askokcancel('Alert','Unsaved Changes May Lost')
+                    jk=messagebox.askokcancel('Alert','Unsaved Changes May Lost')
                     if jk==True:
                         root3.destroy()
                     
@@ -262,7 +268,7 @@ def Search():
         sho(data)
         
         
-    def search1(True):
+    def search1(e=1):
         e1.delete(0,END)
         a=str(v1.get())
         cur.execute('select first_name,middle_name,Last_name from phone where first_name like "%'+str(a)+'%" or middle_name like "%'+str(a)+'%" or last_name like "%'+str(a)+'%"')
@@ -286,7 +292,7 @@ def Search():
     root1.bind("<KeyPress>",search1)
     root1.mainloop()
 def Close():
-    x=askokcancel('Alert','OK TO EXIT')
+    x=messagebox.askokcancel('Alert','OK TO EXIT')
     if x==True:
         root.destroy()
 def u():
@@ -296,6 +302,7 @@ def u():
     
 
 root=Tk()
+root.configure(bg='sky blue')
 imgg=PhotoImage(file='animated-telephone-image-0023.gif')
 Label(root,image=imgg).grid(row=0,column=1)
 Label(root,text="First Name").grid(row=1,column=1)
